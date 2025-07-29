@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Book a Table - Restaurant</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="booking-container">
+    <h2>🪑 Reserve Your Table</h2>
+    <p style="color: #ddd;">Fill the details below to reserve your spot</p>
+
+    <form id="bookingForm">
+      <input type="text" id="name" placeholder="Your Name" required>
+      <input type="date" id="date" required>
+      <input type="time" id="time" required>
+      <input type="number" id="guests" placeholder="Number of Guests (1-20)" min="1" max="20" required>
+      
+      <button type="submit">✅ Book Now</button>
+
+      <!-- Success / Error Message Area -->
+      <p id="bookingMessage" style="margin-top: 15px; font-size: 14px;"></p>
+    </form>
+
+    <br>
+    <button onclick="goBack()">⬅️ Back to Dashboard</button>
+  </div>
+
+  <script src="main.js"></script>
+  <script>
+    function goBack() {
+      // You can add logic here if you want to differentiate between user/admin return
+      window.location.href = "user_dashboard.html";
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login - Restaurant Table Booking</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="login-container">
+    <h2>Login</h2>
+
+    <form onsubmit="return loginCheck()">
+      <!-- Role Dropdown -->
+      <select id="role" required>
+        <option value="">-- Select Role --</option>
+        <option value="user">User</option>
+        <option value="admin">Admin</option>
+      </select>
+
+      <!-- Username -->
+      <input type="text" id="username" placeholder="Username" required>
+
+      <!-- Password -->
+      <input type="password" id="password" placeholder="Password" required>
+
+      <!-- Show Password Toggle -->
+      <label style="font-size: 14px;">
+        <input type="checkbox" id="togglePassword">
+        Show Password
+      </label>
+
+      <!-- Submit Button -->
+      <input type="submit" value="Login">
+
+      <!-- Error Message Placeholder -->
+      <p id="errorMsg" style="color: #ff4d4d; font-size: 14px; margin-top: 10px;"></p>
+    </form>
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>
