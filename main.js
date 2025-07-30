@@ -12,40 +12,45 @@ document.addEventListener("DOMContentLoaded", function () {
   const bookingForm = document.getElementById("bookingForm");
   const bookingMessage = document.getElementById("bookingMessage");
 
-  // ✅ Booking form submission using URL-encoded format
-  if (bookingForm) {
-    bookingForm.addEventListener("submit", function (event) {
-      event.preventDefault();
+  //  Booking form submission using URL-encoded format
+  document.addEventListener("DOMContentLoaded", function () {
+  const form = document.getElementById("bookingForm");
 
-      const name = document.getElementById("name").value.trim();
-      const date = document.getElementById("date").value;
-      const time = document.getElementById("time").value;
-      const guests = document.getElementById("guests").value;
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
 
-      const formData = new URLSearchParams();
-      formData.append("name", name);
-      formData.append("date", date);
-      formData.append("time", time);
-      formData.append("guests", guests);
+    const name = document.getElementById("name").value;
+    const date = document.getElementById("date").value;
+    const time = document.getElementById("time").value;
+    const table = document.getElementById("table").value;
 
-      fetch("https://script.google.com/macros/s/AKfycby6USxUd5RtOTcYRpu1exdQowmieTrq2QRlxVo53YsPXlh9ChhMefKZ2g0hJtYGwKUOAw/exec", {
-        method: "POST",
-        body: formData
-      })
-      .then(res => res.text()) // Google Apps Script returns text not JSON
-      .then(() => {
-        bookingMessage.style.color = "#6fff7f";
-        bookingMessage.textContent = "✅ Booking confirmed!";
-        bookingForm.reset();
-      })
-      .catch(() => {
-        bookingMessage.style.color = "#ff4d4d";
-        bookingMessage.textContent = "❌ Booking failed. Please try again.";
-      });
+    const bookingData = {
+      name: name,
+      date: date,
+      time: time,
+      table: table
+    };
+
+    fetch("https://script.google.com/macros/s/AKfycbxVL5rBsSsPVoqXs7JqX5IiDpENTVsmWkqIUPvdy9db3rFVwFNThVAR4oC754lMFCPdiQ/exec", {
+      method: "POST",
+      mode: "no-cors", // Avoids browser CORS check
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(bookingData)
+    })
+    .then(() => {
+      alert("✅ Table booked successfully!");
+      form.reset();
+    })
+    .catch((error) => {
+      console.error("Booking failed:", error);
+      alert("❌ Booking failed. Please try again.");
     });
-  }
+  });
+});
 
-  // ✅ Load user bookings
+  //  Load user bookings
   const bookingList = document.getElementById("bookingList");
   if (bookingList) {
     fetch("https://script.google.com/macros/s/AKfycby6USxUd5RtOTcYRpu1exdQowmieTrq2QRlxVo53YsPXlh9ChhMefKZ2g0hJtYGwKUOAw/exec")
@@ -64,7 +69,7 @@ document.addEventListener("DOMContentLoaded", function () {
       });
   }
 
-  // ✅ Load admin bookings
+  // Load admin bookings
   const adminList = document.getElementById("adminBookingList");
   if (adminList) {
     fetch("https://script.google.com/macros/s/AKfycby6USxUd5RtOTcYRpu1exdQowmieTrq2QRlxVo53YsPXlh9ChhMefKZ2g0hJtYGwKUOAw/exec")
@@ -84,7 +89,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 
-// ✅ Login check
+//  Login check
 function loginCheck() {
   const username = document.getElementById("username").value.trim();
   const password = document.getElementById("password").value.trim();
