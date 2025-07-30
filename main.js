@@ -1,4 +1,4 @@
-// main.js – Restaurant Table Booking System
+
 
 document.addEventListener("DOMContentLoaded", function () {
   // Grab the form element
