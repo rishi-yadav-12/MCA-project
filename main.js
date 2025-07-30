@@ -112,5 +112,5 @@ function loginCheck() {
 
 // ✅ Logout function
 function logout() {
-  window.location.href = "index.html";
+  window.location.href = "https://rishi-yadav-12.github.io/MCA-project/";
 }
